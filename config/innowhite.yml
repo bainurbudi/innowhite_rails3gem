@@ -1,0 +1,5 @@
+innowhite:
+  server_address: http://beta.innowhite.com:80/whiteboard/
+  api_address: http://184.107.152.250:3000/api/
+  private_key: knbskdjfhkwowurowue
+  organization: api_test_bainur

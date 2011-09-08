@@ -48,7 +48,11 @@ Inno::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => "welcome#index"
+  post 'api/create_room' => 'api#create_room', :as => :create_room
+  post 'api/join_room' => 'api#join_room', :as => :join_room
+  get 'api/get_sessions' => 'api#get_sessions', :as => :get_sessions
+  get 'api/past_sessions' => 'api#past_sessions', :as => :past_sessions
+  root :to => "dashboard#index"
 
   # See how all your routes lay out with "rake routes"
 
