@@ -6,6 +6,8 @@ gem 'rails', '3.0.5'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'mysql'
+gem "rake", "0.8.7"
+
 gem "innowhite", "1.0.1"
 # Use unicorn as the web server
 # gem 'unicorn'
