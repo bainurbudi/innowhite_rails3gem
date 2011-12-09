@@ -77,7 +77,7 @@ class ApiController < ApplicationController
 
   def create_room
     innowhite = Innowhite.new(params[:user],"abc")
-    res = innowhite.create_room
+    res = innowhite.create_room(:orgName => '', :user => params['username'])[:address] #rescue nil
 
     render :update do |page|
       page.replace "result", "<div id='result'>room_id = #{res[:room_id]} and address = #{res[:address]}</div>"
@@ -278,6 +278,32 @@ class ApiController < ApplicationController
         end
       end
     end
+  end
+
+
+
+  private
+
+  def pass_authenticate_backup
+    begin
+      org = params[:orgName]
+      org ||= params[:parentOrg]
+      checksum_tmp = "parentOrg=#{params[:parentOrg]}&orgName=#{params[:orgName]}"
+      auth = PkStorage.first(:conditions => ["organization_name = ?",org]) rescue nil
+      checksum = Digest::SHA1.hexdigest(URI.parse(checksum_tmp+auth.private_key).to_s)
+
+      if checksum.eql?(params[:checksum])
+        return true
+      else
+        raise "authentication failed"
+      end
+    rescue
+      raise "organization #{org} is not found"
+    end
+  end
+
+  def pass_authenticate
+    Digest::SHA1.hexdigest("#{params[:orgName]}"+"innowhite"+"#{params[:private]}")
   end
 
 
