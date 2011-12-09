@@ -1,6 +1,6 @@
 class ApiController < ApplicationController
   require 'digest/sha1'
-  before_filter :initialize_innowhite 
+ # before_filter :initialize_innowhite
 
   #  ## testing api
   #  def index
