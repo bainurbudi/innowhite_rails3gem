@@ -76,8 +76,8 @@ class ApiController < ApplicationController
   end
 
   def create_room
-    innowhite = Innowhite.new(params[:user],"abc")
-    res = innowhite.create_room(:orgName => '', :user => params['username'])[:address] #rescue nil
+    innowhite = Innowhite.new
+    res = innowhite.create_room
 
     render :update do |page|
       page.replace "result", "<div id='result'>room_id = #{res[:room_id]} and address = #{res[:address]}</div>"
@@ -85,7 +85,7 @@ class ApiController < ApplicationController
   end
 
   def join_room
-    innowhite = Innowhite.new(params[:user],"abc")
+    innowhite = Innowhite.new
     res = innowhite.join_meeting(params[:room_id], params[:user])
 
     render :update do |page|
