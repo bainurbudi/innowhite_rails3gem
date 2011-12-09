@@ -84,6 +84,14 @@ class ApiController < ApplicationController
     end
   end
 
+  def get_sessions
+    innowhite = Innowhite.new
+      @res = innowhite.get_sessions
+      render :update do |page|
+          page.replace "result-active", "<div id='result-active'>#{@res}</div>"
+        end
+    end
+
   def join_room
     innowhite = Innowhite.new
     res = innowhite.join_meeting(params[:room_id], params[:user])
