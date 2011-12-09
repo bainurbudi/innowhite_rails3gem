@@ -119,9 +119,14 @@ class ApiController < ApplicationController
   end
 
   def past_sessions
+    require 'pp'
     innowhite = Innowhite.new
     res = innowhite.past_sessions(:orgName => nil)
     logger.info res
+
+    render :update do |page|  
+        page.replace "result", "<div id='result'>room_id = #{res}</div>"
+     end
 #    conditions = []
 #    @org_name = params[:orgName]
 #    @tags = params[:tags]
