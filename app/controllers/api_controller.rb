@@ -133,9 +133,9 @@ class ApiController < ApplicationController
     conditions = conditions.join(" and ")
 
     @meetings = if @tags.blank?
-      WebSession.find(:all, :conditions => conditions)
+      ::WebSession.find(:all, :conditions => conditions)
     else
-      WebSession.find_tagged_with(@tags, :conditions => conditions)
+      ::WebSession.find_tagged_with(@tags, :conditions => conditions)
     end
 
     respond_to do |format|
