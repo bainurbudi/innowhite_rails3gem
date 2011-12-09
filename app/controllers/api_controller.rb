@@ -85,8 +85,7 @@ class ApiController < ApplicationController
   end
 
   def get_sessions
-    innowhite = Innowhite.new
-      @res = innowhite.get_sessions
+      @res = @innowhite.get_sessions
       render :update do |page|
           page.replace "result-active", "<div id='result-active'>#{@res}</div>"
         end
@@ -121,11 +120,29 @@ class ApiController < ApplicationController
 
   def past_sessions
     innowhite = Innowhite.new
-    @rooms = innowhite.past_sessions(:orgName => nil) #rescue []
-
-    respond_to do |format|
-      format.xml  { render :xml => @meetings }
-    end
+    res = innowhite.past_sessions(:orgName => nil)
+    logger.info res
+#    conditions = []
+#    @org_name = params[:orgName]
+#    @tags = params[:tags]
+#    @user = User.find_by_login(params[:user]) rescue nil
+#
+#    Time.zone = @user.nil?? "UTC" : @user.time_zone
+#    conditions << "user_id = #{@user.id}" if @user
+#    conditions << "(organization_name = '#{@org_name}' or organization_name is null)"
+#    conditions << "session_status != 'Active'"
+#
+#    conditions = conditions.join(" and ")
+#
+#    @meetings = if @tags.blank?
+#      WebSession.find(:all, :conditions => conditions)
+#    else
+#      WebSession.find_tagged_with(@tags, :conditions => conditions)
+#    end
+#
+#    respond_to do |format|
+#      format.xml  { render :xml => @meetings }
+#    end
   end
 
   def create_schedule_meeting
