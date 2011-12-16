@@ -1,6 +1,6 @@
 <h1> Creating Room</h1>
 ( enter the name with your user on innowhite, Ex : bainur)
-<% form_tag '/~stageinn/api/create_room', :remote => true do %>
+<% form_tag '/api/create_room', :remote => true do %>
     <%= text_field_tag "user",nil %>
   <%= submit_tag "submit" %>
 <% end %>
@@ -10,7 +10,7 @@
 <br /><br /><br /><br /><br />
 
 <h2>Join room</h2>
-<% form_tag '/~stageinn/api/join_room', :remote => true do %>
+<% form_tag '/api/join_room', :remote => true do %>
     User    :<%= text_field_tag "user",nil %>    Room id :<%= text_field_tag "room_id",nil %>
   <%= submit_tag "submit" %>
 <% end %>
@@ -19,7 +19,7 @@
 <br /><br /><br /><br /><br />
 
 <h1>Active Sessions</h1>
-<%= link_to  "Retrieve data",'/~stageinn/api/get_sessions', :method => :get, :remote => true  %>
+<%= link_to  "Retrieve data",'/api/get_sessions', :method => :get, :remote => true  %>
 results :<br />
 
 <div id="result-active"><%= debug @res %></div>
@@ -27,7 +27,7 @@ results :<br />
 
 
 <h1>Expired Sessions</h1>
-<%= link_to  "Retrieve data",'/~stageinn/api/past_sessions', :method => :get, :remote => true  %>
+<%= link_to  "Retrieve data",'/api/past_sessions', :method => :get, :remote => true  %>
 results <br />
 
 <div id="result-past"></div>

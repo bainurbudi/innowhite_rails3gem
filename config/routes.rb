@@ -49,12 +49,12 @@ Inno::Application.routes.draw do
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
   
-  match '/~stageinn' => "dashboard#index"
+  match '/' => "dashboard#index"
 #  resources '/~staginn' do
-  post '/~stageinn/api/create_room' => 'api#create_room', :as => :create_room
-  post '/~stageinn/api/join_room' => 'api#join_room', :as => :join_room
-  get '/~stageinn/api/get_sessions' => 'api#get_sessions', :as => :get_sessions
-  get '/~stageinn/api/past_sessions' => 'api#past_sessions', :as => :past_sessions
+  post '/api/create_room' => 'api#create_room', :as => :create_room
+  post 'api/join_room' => 'api#join_room', :as => :join_room
+  get '/api/get_sessions' => 'api#get_sessions', :as => :get_sessions
+  get '/api/past_sessions' => 'api#past_sessions', :as => :past_sessions
 #end
   root :to => "dashboard#index"
 

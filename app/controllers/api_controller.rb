@@ -77,7 +77,7 @@ class ApiController < ApplicationController
 
   def create_room
     innowhite = Innowhite.new
-    res = innowhite.create_room
+    res = innowhite.create_room(:user => params[:user])
 
     render :update do |page|
       page.replace "result", "<div id='result'>room_id = #{res[:room_id]} and address = #{res[:address]}</div>"
